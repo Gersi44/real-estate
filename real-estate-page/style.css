@@ -1,0 +1,556 @@
+/* globale variable */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F8DE7E;
+    padding: 1px 1px;
+    position: fixed;
+    width: 100%; /* Ensure navbar stretches across the entire screen */
+    top: 0;
+    z-index: 10; /* Make sure the navbar is above the video */
+  }
+  .logo img {
+    width: 70px; /* Adjust according to your logo size */
+  }
+  /* Center navigation links */
+  .nav-center {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Allows this section to grow and take the available space */
+  }
+  .nav-center li {
+    margin: 0 5px;
+  }
+  .nav-right {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nav-right li {
+    margin-left: 10px;
+  }
+  /* Common styles for all links */
+  .nav-center a,
+  .nav-right a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 1px;
+    
+    background-color: transparent;
+  }
+  /* Hover effect */
+  .nav-center a:hover,
+  .nav-right a:hover {
+    background-color: #2E3E69;
+    color: white;
+  }
+  .nav-right a:hover {
+    background-color: #658C73;
+    color: white;
+  }
+  body,
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /* Style the video: 100% width and height to cover the entire window */
+  #video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  /*
+  .content {
+    position: fixed;
+    bottom: 0;
+    color: white;
+    width: 100%;
+    margin-bottom: 500px;
+    margin-left: 700px;
+    font-size: 30px;
+    font-family: verdana;
+  }
+  */
+  .content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 30px;
+    font-family: Fantasy;
+    text-align: center;
+    width: 100%;
+  }
+  
+:root {
+    --bg-body: #f4f4f4;
+    --bg-hot: #dd3333;
+    --bg-featured: #ea723d;
+    --p-text-color: #7e8186;
+    --icon-info-color: #808080;
+    --icon-image-color: white;
+    --h2-text-color: #1a1a1a;
+    --price-text-color: #2fa89e;
+    --backgound-imgage: orange;
+    --border-view-color: orange;
+  }
+  
+  /* all element */
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  /* reset element */
+  
+  /* comman style */
+  
+  .overlay,
+  .img-overlay img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  a:hover {
+    color: white;
+  }
+  
+  /* body style */
+  
+  body {
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--bg-body);
+  }
+  
+  /* container style */
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr repeat(12, minmax(auto, 60px)) 1fr;
+    grid-gap: 40px;
+    margin: 35px 0;
+  }
+  
+  /* cards style */
+  
+
+  
+  .cards {
+    grid-column: 2 / span 12;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(auto, 60px));
+    grid-gap: 40px;
+    position: relative;
+  }
+  
+  .cards::after {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 81.6px;
+    border: 16.4px solid transparent;
+    border-left-color: var(--bg-featured);
+    transform: translateY(-50%);
+  }
+  
+  /* card style */
+  
+  .card {
+    grid-column-end: span 4;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    box-shadow: 0px 0px 7px 3px #dfdfdf;
+  }
+  
+  .card:hover {
+    transform: translateY(-7px);
+  }
+  
+  /* img-overlya style */
+  
+  .img-overlay {
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hot-home:before {
+    content: "hot";
+    position: absolute;
+    padding: 3px 7px;
+    background-color: var(--bg-hot);
+    z-index: 3;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    text-transform: capitalize;
+  }
+  
+  .img-overlay img {
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .img-overlay img:hover + div {
+    width: 100%;
+  }
+  
+  figcaption {
+    padding: 30px 0 30px 30px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--h2-text-color);
+    font-size: 1.2rem;
+  }
+  
+  .overlay {
+    width: 0;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    background-color: var(--backgound-imgage);
+    opacity: 0.8;
+    z-index: 2;
+    transition: all 0.5s ease 0.1s;
+  }
+  
+  .overlay:hover {
+    width: 100%;
+  }
+  
+  .overlay:hover > a {
+    display: block;
+    text-align: center;
+    border-color: var(--border-view-color);
+  }
+  
+  .overlay a {
+    display: none;
+    width: 140px;
+    padding: 15px 0;
+    text-transform: capitalize;
+    border: 2px solid transparent;
+    transition: border 10s ease;
+  }
+  
+  /* icons-img style */
+  
+  .cont {
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .icons-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .icons-img button {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    top: -40px;
+    z-index: 10;
+  }
+  
+  .icons-img button:first-of-type {
+    right: 55px;
+  }
+  
+  .icons-img button:last-of-type {
+    right: 20px;
+  }
+  
+  .icons-img button:first-of-type:hover {
+    right: 55px;
+    color: #ff3232;
+  }
+  
+  .icons-img i {
+    font-size: 25px;
+  }
+  
+  /* card-content styles */
+  
+  .card-content {
+    padding: 0px 30px 30px;
+    line-height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    font-size: 14px;
+  }
+  
+  .card-content p {
+    color: var(--p-text-color);
+  }
+  
+  /* icons-home style */
+  
+  .icons-home {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .name-icon {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .name-icon > span {
+    text-transform: capitalize;
+    color: var(--h2-text-color);
+  }
+  
+  /* icon styles */
+  
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon i {
+    color: var(--icon-info-color);
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .icon span {
+    vertical-align: middle;
+  }
+  
+  /* price style */
+  
+  .price {
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .price span:last-of-type {
+    color: var(--price-text-color);
+    font-size: 18px;
+  }
+  
+  /* media screen style */
+  
+  @media screen and (max-width: 1000px) {
+    .card {
+      grid-column-end: span 6;
+    }
+    /* card-content style */
+  }
+  
+  @media screen and (max-width: 700px) {
+    .cards {
+      grid-template-columns: repeat(12, minmax(auto, 1fr));
+      grid-column-gap: 10px;
+      grid-row-gap: 30px;
+    }
+    .card {
+      grid-column-end: span 12;
+    }
+    /* icons-home style */
+    .card-content {
+      font-size: 16px;
+    }
+    /* price style */
+    .price span:last-of-type {
+      color: var(--price-text-color);
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .container {
+      grid-template-columns: 20px repeat(12, minmax(auto, 1fr)) 20px;
+      grid-gap: 10px;
+    }
+    .cards {
+      grid-template-columns: repeat(12, minmax(auto, 1fr));
+      grid-column-gap: 10px;
+      grid-row-gap: 30px;
+    }
+    .card {
+      grid-column-end: span 12;
+    }
+    /* card-content style */
+  }
+  @import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+$red: #e74c3c;
+
+*, 
+
+
+html, body {
+  background: #f1f1f1;
+  font-family: 'Merriweather', sans-serif;
+  padding: 1em;
+}
+
+h1 {
+   text-align: center;
+   color: #a8a8a8;
+   @include text-shadow(1px 1px 0 rgba(white, 1));
+}
+
+form {
+   max-width: 600px;
+   text-align: center;
+   margin: 20px auto;
+  
+  input, textarea {
+     border:0; outline:0;
+     padding: 1em;
+     @include border-radius(8px);
+     display: block;
+     width: 100%;
+     margin-top: 1em;
+     font-family: 'Merriweather', sans-serif;
+     @include box-shadow(0 1px 1px rgba(black, 0.1));
+     resize: none;
+    
+    &:focus {
+       @include box-shadow(0 0px 2px rgba($red, 1)!important);
+    }
+  }
+  
+  #input-submit {
+     color: white; 
+     background: blue;
+     cursor: pointer;
+    
+    &:hover {
+       @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6)); 
+    }
+  }
+  
+  textarea {
+      height: 126px;
+  }
+}
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-right: 2%; 
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+.footer{
+    background:#000;
+    padding:30px 0px;
+    font-family: 'Play', sans-serif;
+    text-align:center;
+    }
+    
+    .footer .row{
+    width:100%;
+    margin:1% 0%;
+    padding:0.6% 0%;
+    color:blue;
+    font-size:0.8em;
+    }
+    
+    .footer .row a{
+    text-decoration:none;
+    color:white;
+    transition:0.5s;
+    }
+    
+    .footer .row a:hover{
+    color:white;
+    }
+    
+    .footer .row ul{
+    width:100%;
+    }
+    
+    .footer .row ul li{
+    display:inline-block;
+    margin:0px 30px;
+    }
+    
+    .footer .row a i{
+    font-size:2em;
+    margin:0% 1%;
+    }
+    
+    @media (max-width:720px){
+    .footer{
+    text-align:left;
+    padding:5%;
+    }
+    .footer .row ul li{
+    display:block;
+    margin:10px 0px;
+    text-align:left;
+    }
+    .footer .row a i{
+    margin:0% 3%;
+    }
+    .link-grey { color: #aaa; } .link-grey:hover { color: #00913b; }
